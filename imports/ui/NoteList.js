@@ -4,14 +4,17 @@ import { Meteor } from "meteor/meteor";
 import { Notes } from "../api/notes";
 import NoteListHeader from "./NodeListHeader";
 import NoteListItem from "./NoteListItem";
+import NoteListEmptyItem from "./NoteListEmptyItem";
 
 export const NoteList = props => {
   return (
     <div>
       <NoteListHeader />
-      {props.notes.map(note => (
-        <NoteListItem key={note._id} note={note}/>
-      ))}
+      {props.notes.length ? (
+        props.notes.map(note => <NoteListItem key={note._id} note={note} />)
+      ) : (
+        <NoteListEmptyItem />
+      )}
       <p>NoteList {props.notes.length}</p>
     </div>
   );

@@ -12,7 +12,7 @@ export const NoteList = props => {
     <div>
       <NoteListHeader />
       {props.notes.length ? (
-        props.notes.map(note => <NoteListItem key={note._id } note={note} />)
+        props.notes.map(note => <NoteListItem key={note._id} note={note} />)
       ) : (
         <NoteListEmptyItem />
       )}
@@ -30,13 +30,17 @@ export default createContainer(() => {
   Meteor.subscribe("notes");
 
   return {
-    notes: Notes.find()
-      .fetch() 
+    notes: Notes.find({}, {
+      sort: {
+        updatedAt: -1
+      }
+    })
+      .fetch()
       .map(note => {
         return {
           ...note,
           selected: note._id === selectedNoteId
-        }
-      }) 
+        };
+      })
   };
 }, NoteList);

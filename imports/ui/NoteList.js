@@ -9,7 +9,7 @@ import { Session } from "meteor/session";
 
 export const NoteList = props => {
   return (
-    <div>
+    <div className="item-list">
       <NoteListHeader />
       {props.notes.length ? (
         props.notes.map(note => <NoteListItem key={note._id} note={note} />)

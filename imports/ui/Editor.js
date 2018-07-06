@@ -2,7 +2,7 @@ import React from "react";
 import { createContainer } from "meteor/react-meteor-data";
 import { Session } from "meteor/session";
 import { Meteor } from "meteor/meteor";
-import {browserHistory} from 'react-router';
+import { browserHistory } from "react-router";
 
 import { Notes } from "../api/notes";
 
@@ -28,24 +28,24 @@ export class Editor extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const currentNoteId = this.props.note ? this.props.note._id : undefined;
-    const prevNoteId =  prevProps.note ? prevProps.note._id : undefined;
+    const prevNoteId = prevProps.note ? prevProps.note._id : undefined;
 
     if (currentNoteId && currentNoteId !== prevNoteId) {
       this.setState({
         title: this.props.note.title,
         body: this.props.note.body
-      })
+      });
     }
   }
-  handleRemoval () {
+  handleRemoval() {
     this.props.call("notes.remove", this.props.note._id);
-    this.props.browserHistory.push('/dashboard');
+    this.props.browserHistory.push("/dashboard");
   }
 
   render() {
     if (this.props.note) {
       return (
-        <div>
+        <div className="editor">
           <input
             value={this.state.title}
             placeholder="Untitle Note"
@@ -61,11 +61,13 @@ export class Editor extends React.Component {
       );
     } else {
       return (
-        <p>
-          {this.props.selectedNoteId
-            ? "Note not found."
-            : "Pick or create a note to get started."}
-        </p>
+        <div className="editor">
+          <p>
+            {this.props.selectedNoteId
+              ? "Note not found."
+              : "Pick or create a note to get started."}
+          </p>
+        </div>
       );
     }
   }

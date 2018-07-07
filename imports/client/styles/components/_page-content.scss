@@ -1,18 +1,39 @@
 .page-content {
-    display: flex;
-    height: $page-content-height;
-    margin: 0 auto;
-    max-width: $site-max-width;
+  display: flex;
+  height: $page-content-height;
+  margin: 0 auto;
+  max-width: $site-max-width;
+  @include funkyBackground(blue);
+
+  @include desktop {
     padding: $large-space $space;
+  }
 }
 
 .page-content__sidebar {
+  display: none;
+  padding-right: $large-space;
+  width: $page-content-sidebar-width;
+
+  @include desktop {
     display: flex;
-    padding-right: $large-space;
-    width: $page-content-sidebar-width;
+  }
 }
 
+// @media (max-width: 50rem) and (min-width: 30rem) {
+//     .page-content__sidebar * {
+//         color: red;
+//     }
+// }
+
 .page-content__main {
-    display: flex;
+  display: flex;
+  width: 100%;
+
+  @include desktop() {
     width: $page-content-main-width;
+    @include funkyBorder() {
+      color: green;
+    }
+  }
 }

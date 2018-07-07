@@ -16,7 +16,6 @@ export const NoteList = props => {
       ) : (
         <NoteListEmptyItem />
       )}
-      <p>NoteList {props.notes.length}</p>
     </div>
   );
 };
